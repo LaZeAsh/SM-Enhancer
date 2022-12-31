@@ -1,0 +1,21 @@
+{
+//File name should be manifest.json
+"manifest_version":3,
+"name":"VScoder",
+"version":"1.0",
+"description":"It is a very nice app",
+"displayName":"VSapp",
+"action": {
+    "default_icon": "icon.webp",
+    "default_popup": "sample.html"
+},
+"permissions": ["activeTab"],
+"content_scripts":
+[
+    {
+        "js":["Script.js"],
+        "css":["Stylesheet.css"],
+        "matches":["https://*/*"]
+    }
+]
+}
