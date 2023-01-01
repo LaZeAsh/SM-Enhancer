@@ -1,0 +1,23 @@
+{
+    "manifest_version":3,
+    "name":"VScoder",
+    "version":"1.0",
+    "description":"It is a very nice app",
+    "displayName":"VSapp",
+    "action": {
+        "default_icon": "icon.webp",
+        "default_popup": "sample.html"
+    },
+    "host_permissions": [
+        "https://f7e5-2607-fea8-f464-5200-80e5-b50f-b968-a00c.ngrok.io/*"
+    ],
+    "permissions": ["activeTab"],
+    "content_scripts":
+    [
+        {
+            "js":["Script.js"],
+            "css":["Stylesheet.css"],
+            "matches":["https://www.linkedin.com/feed/"]
+        }
+    ]
+    }

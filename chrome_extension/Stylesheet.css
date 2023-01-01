@@ -1,0 +1,65 @@
+
+.mybutton {
+    z-index: 99;
+    position: absolute;
+    width: 80%;
+    top: 50%;
+    left: 50%;
+    border-radius: 100%;
+    transform: translate(-50%, -50%);
+    background-color: #63caff;
+    cursor: pointer;
+  }
+  
+  .mybutton:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+  
+  .mybutton:hover + .button-outline {
+    width: 85%;
+  }
+  
+  .mybutton-outline {
+    position: absolute;
+    width: 75%;
+    top: 50%;
+    left: 50%;
+    border-radius: 100%;
+    border: 7px solid #63caff;
+    transform: translate(-50%, -50%);
+    transition: all 0.25s cubic-bezier(.7, .11, .32, 2);
+  }
+  
+  .mybutton-outline:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+  
+  .mybutton-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    font-size: 96px;
+    font-family: "Open Sans", sans-serif;
+    color: white;
+  }
+  
+  .mybutton-container {
+    position: relative;
+    margin: 0 auto;
+    width: 400px;
+    transform: scale(0.2,0.2);
+  }
+  
+  .mybutton-container:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+  }
+  
+
+  

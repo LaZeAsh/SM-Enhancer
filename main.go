@@ -1,17 +1,11 @@
 package main
 
 import (
-	// "bytes"
-	// "encoding/json"
 	"fmt"
 	"net/http"
-	// "log"
-	// "net/http"
 	"os"
 	"strings"
-
 	"github.com/gin-gonic/gin"
-
 	cohere "github.com/cohere-ai/cohere-go"
 	godotenv "github.com/joho/godotenv"
 )
@@ -60,7 +54,7 @@ func comment(context *gin.Context) {
 
 	context.BindJSON(&response)
 	comment := getCohereResponse(response.ID) // to generate a response from Cohere
-
+	fmt.Println(comment)
 	context.IndentedJSON(http.StatusCreated, comment)
 }
 
