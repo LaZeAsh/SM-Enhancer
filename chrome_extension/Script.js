@@ -18,7 +18,7 @@ function getButton(buttonId, text) {
     <div class="mybutton-container" id="${buttonId}" text="${text}">
         <div class="mybutton" text="${text}">
           <div class="mybutton-text" text="${text}">
-            hover
+            Click
           </div>
         </div>
         <div class="mybutton-outline" text="${text}"></div>
@@ -30,8 +30,10 @@ function print(e) {
     console.clear();
     var text = document.elementFromPoint(e.clientX, e.clientY).getAttribute("text");
     console.log(text);
-    var URL = "https://a68d-47-42-192-206.ngrok.io/comment";
-    httpRequests(URL, text)
+    var URL = "https://609d-2607-fea8-f464-5200-80e5-b50f-b968-a00c.ngrok.io/comment";
+    httpRequests(URL, text).then((finalText) => {
+        placeInComment(finalText);
+    })
     // console.log(finalText)
 }
 
@@ -59,21 +61,33 @@ function getText() {
 async function httpRequests(URL, text) {
     var content = {
         "ID": text
-    } 
+    }
     fetch(URL, {
+        method: 'POST',
         headers: {
-            'Accept': 'application/json',
+            // 'Accept': 'application/json',
             'Content-Type': 'application/json',
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
         },
-        method: 'POST',
         body: JSON.stringify(content)
     })
-    .then((response) => response.json())
-    .then((object)=> {
-        console.log(object)
-        placeInComment(object)
+    .then(async(response) => {
+        // console.log(await response.text)
+        // console.log("hi", response.text)
+        // console.log(response.text())
+        // return await response.text();
+        var comment = await response.text();
+        comment.replace('"', '');
+        comment.replace("\\", '');
+        console.log(comment)
+        placeInComment(comment)
     })
+    // var xmlHttp = new XMLHttpRequest();
+    // console.log("HTTP function ran")
+    // xmlHttp.open("POST", URL, false);
+    // xmlHttp.send(JSON.stringify(content));
+    // console.log(xmlHttp.responseText)
+    // return xmlHttp.responseText;
 }
 
 const interval = setInterval(getText, 1000);

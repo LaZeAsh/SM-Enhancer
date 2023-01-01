@@ -8,6 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 	cohere "github.com/cohere-ai/cohere-go"
 	godotenv "github.com/joho/godotenv"
+	// "github.com/gin-contrib/cors"
 )
 
 var prompt string
@@ -46,6 +47,7 @@ func getCohereResponse(ID string) string {
 		return err.Error() 
 	} 
 	returnValue := strings.Split(response.Generations[0].Text, "\n")[0]
+	// fmt.Println(returnValue)
 	return returnValue
 }
 
@@ -57,9 +59,26 @@ func comment(context *gin.Context) {
 	fmt.Println(comment)
 	context.IndentedJSON(http.StatusCreated, comment)
 }
+func CORSMiddleware() gin.HandlerFunc {
+    return func(c *gin.Context) {
+
+        c.Header("Access-Control-Allow-Origin", "*")
+        c.Header("Access-Control-Allow-Credentials", "true")
+        c.Header("Access-Control-Allow-Headers", "Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization, accept, origin, Cache-Control, X-Requested-With")
+        c.Header("Access-Control-Allow-Methods", "POST,HEAD,PATCH, OPTIONS, GET, PUT")
+
+        if c.Request.Method == "OPTIONS" {
+            c.AbortWithStatus(204)
+            return
+        }
+
+        c.Next()
+    }
+}
 
 func server() {
 	router := gin.Default()
+	router.Use(CORSMiddleware())
 	router.POST("/comment", comment)
 	router.Run("localhost:9090")
 }
