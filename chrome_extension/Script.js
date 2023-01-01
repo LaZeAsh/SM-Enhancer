@@ -30,10 +30,8 @@ function print(e) {
     console.clear();
     var text = document.elementFromPoint(e.clientX, e.clientY).getAttribute("text");
     console.log(text);
-    var URL = "https://f7e5-2607-fea8-f464-5200-80e5-b50f-b968-a00c.ngrok.io/comment";
-    httpRequests(URL, text).then((finalText) => {
-        placeInComment(finalText);
-    })
+    var URL = "https://a68d-47-42-192-206.ngrok.io/comment";
+    httpRequests(URL, text)
     // console.log(finalText)
 }
 
@@ -61,27 +59,21 @@ function getText() {
 async function httpRequests(URL, text) {
     var content = {
         "ID": text
-    }
+    } 
     fetch(URL, {
-        method: 'POST',
         headers: {
-            // 'Accept': 'application/json',
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/50.0.2661.102 Safari/537.36'
         },
+        method: 'POST',
         body: JSON.stringify(content)
     })
-    .then(response => {
-        console.log("hi", response.text)
-        return response.text;
-        // placeInComment(response.text)
+    .then((response) => response.json())
+    .then((object)=> {
+        console.log(object)
+        placeInComment(object)
     })
-    // var xmlHttp = new XMLHttpRequest();
-    // console.log("HTTP function ran")
-    // xmlHttp.open("POST", URL, false);
-    // xmlHttp.send(JSON.stringify(content));
-    // console.log(xmlHttp.responseText)
-    // return xmlHttp.responseText;
 }
 
 const interval = setInterval(getText, 1000);

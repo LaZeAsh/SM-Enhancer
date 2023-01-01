@@ -7,9 +7,9 @@
     "action": {
         "default_icon": "icon.webp",
         "default_popup": "sample.html"
-    },
+    }, 
     "host_permissions": [
-        "https://f7e5-2607-fea8-f464-5200-80e5-b50f-b968-a00c.ngrok.io/*"
+        "https://a68d-47-42-192-206.ngrok.io/*"
     ],
     "permissions": ["activeTab"],
     "content_scripts":
