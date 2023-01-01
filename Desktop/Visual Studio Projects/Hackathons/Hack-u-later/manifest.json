@@ -15,7 +15,7 @@
     {
         "js":["Script.js"],
         "css":["Stylesheet.css"],
-        "matches":["https://*/*"]
+        "matches":["https://www.linkedin.com/feed/"]
     }
 ]
 }

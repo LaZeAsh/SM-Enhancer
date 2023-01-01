@@ -1,3 +1,4 @@
+console.log("hi")
 function placeInComment(text) {
     var list2 = document.querySelectorAll('div[class="editor-content ql-container"] > div')
     console.log(list2.length)
@@ -9,6 +10,21 @@ function placeInComment(text) {
     }
 }
 
+function getButton(buttonId, text) {
+    // we place the id first so it recognizes tap seamlessly
+    // text at button text since that is where we will query for the text
+    return `
+    <br></br>
+    <div class="mybutton-container" id="${buttonId}" text="${text}">
+        <div class="mybutton" text="${text}">
+          <div class="mybutton-text" text="${text}">
+            hover
+          </div>
+        </div>
+        <div class="mybutton-outline" text="${text}"></div>
+      </div>
+    `
+}
 
 function print(e) {
     console.clear()
@@ -27,7 +43,8 @@ function getText() {
 
         // we use different button ids to simulate different pressed
         var buttonId = `SendToServerBtn${i}`
-        var button = `<button id=${buttonId} text="${text}">hi</button>`
+        // var button = `<button id=${buttonId} text="${text}">hi</button>`
+        var button = getButton(buttonId, text)
 
         // default linkedin parent of texts have 5 children
         if (parent.childNodes.length == 5) {
